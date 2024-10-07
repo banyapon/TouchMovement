@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraClass
     - ForwardMovement
+    - ForwardRealTime
+    - LoadSceneManager
     Unity.Recorder.Editor.dll:
     - UnityEditor.Recorder.RecorderPreferencesSettings
     Unity.Rider.Editor.dll:
@@ -14,6 +16,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
@@ -24,9 +27,12 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
   serializedClasses:
     UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
     UnityEngine.UI:
     - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
@@ -34,8 +40,146 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.ScrollRect/ScrollRectEvent
     - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: ForwardMovement
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: ForwardRealTime
+    methodName: LoadScene
   sceneClasses:
+    Assets/Scenes/Main.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16616}
+    - Class: 114
+      Script: {instanceID: 17642}
+    - Class: 114
+      Script: {instanceID: 17848}
+    - Class: 114
+      Script: {instanceID: 18144}
+    - Class: 114
+      Script: {instanceID: 20394}
+    - Class: 114
+      Script: {instanceID: 20706}
+    - Class: 114
+      Script: {instanceID: 21192}
+    - Class: 114
+      Script: {instanceID: 23370}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/RealTime.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16616}
+    - Class: 114
+      Script: {instanceID: 17642}
+    - Class: 114
+      Script: {instanceID: 17848}
+    - Class: 114
+      Script: {instanceID: 18144}
+    - Class: 114
+      Script: {instanceID: 18316}
+    - Class: 114
+      Script: {instanceID: 18918}
+    - Class: 114
+      Script: {instanceID: 19944}
+    - Class: 114
+      Script: {instanceID: 20394}
+    - Class: 114
+      Script: {instanceID: 20706}
+    - Class: 114
+      Script: {instanceID: 21192}
+    - Class: 114
+      Script: {instanceID: 21200}
+    - Class: 114
+      Script: {instanceID: 22282}
+    - Class: 114
+      Script: {instanceID: 23074}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/SampleScene.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -68,29 +212,31 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16614}
+      Script: {instanceID: 16616}
     - Class: 114
-      Script: {instanceID: 17554}
+      Script: {instanceID: 17584}
     - Class: 114
-      Script: {instanceID: 17610}
+      Script: {instanceID: 17642}
     - Class: 114
-      Script: {instanceID: 17804}
+      Script: {instanceID: 17848}
     - Class: 114
-      Script: {instanceID: 18256}
+      Script: {instanceID: 18144}
     - Class: 114
-      Script: {instanceID: 18844}
+      Script: {instanceID: 18316}
     - Class: 114
-      Script: {instanceID: 19822}
+      Script: {instanceID: 18918}
     - Class: 114
-      Script: {instanceID: 20254}
+      Script: {instanceID: 19944}
     - Class: 114
-      Script: {instanceID: 20560}
+      Script: {instanceID: 20394}
     - Class: 114
-      Script: {instanceID: 21030}
+      Script: {instanceID: 20706}
     - Class: 114
-      Script: {instanceID: 21038}
+      Script: {instanceID: 21192}
     - Class: 114
-      Script: {instanceID: 22080}
+      Script: {instanceID: 21200}
+    - Class: 114
+      Script: {instanceID: 22282}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -146,6 +292,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 8af13dfc371c9fb1cc40e3c4a961f137
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameController
   - hash:
       serializedVersion: 2
       Hash: ea1569413d805748b7cef2dcb4622c85
@@ -950,7 +1102,21 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 18e9a502e5acc2669bdd61b6734080c3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ForwardRealTime
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LoadSceneManager
   platform: 19
   scenePathNames:
+  - Assets/Scenes/Main.unity
   - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/RealTime.unity
   playerPath: C:/Users/HP/Desktop/Guide/TouchMovement/TouchMovement.exe

@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\CameraClass.cs" />
     <Compile Include="Assets\Scripts\ForwardMovement.cs" />
     <Compile Include="Assets\Scripts\ForwardRealTime.cs" />
+    <Compile Include="Assets\Scripts\LoadSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

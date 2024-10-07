@@ -362,6 +362,7 @@
 "Assets/Scripts/ForwardMovement.cs"
 "Assets/Scripts/ForwardRealTime.cs"
 "Assets/Scripts/GameController.cs"
+"Assets/Scripts/LoadSceneManager.cs"
 -langversion:9.0
 
 /deterministic
