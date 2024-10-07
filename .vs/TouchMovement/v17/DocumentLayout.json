@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\TouchMovement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HP\\Desktop\\TouchMovement\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|c:\\users\\hp\\desktop\\touchmovement\\assets\\scripts\\forwardrealtime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\forwardrealtime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|c:\\users\\hp\\desktop\\touchmovement\\assets\\scripts\\forwardmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\forwardmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|C:\\Users\\HP\\Desktop\\TouchMovement\\assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": ".gitattributes",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\.gitattributes",
-              "RelativeDocumentMoniker": ".gitattributes",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\.gitattributes",
-              "RelativeToolTip": ".gitattributes",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-09-27T08:34:03.371Z",
+              "Title": "ForwardRealTime.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\ForwardRealTime.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ForwardRealTime.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\ForwardRealTime.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ForwardRealTime.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAMwE0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T04:29:40.828Z",
               "EditorCaption": ""
             },
             {
@@ -41,9 +45,22 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\ForwardMovement.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\ForwardMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\ForwardMovement.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAA5wBoAAAAAAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwEwAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T04:26:47.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\GameController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\GameController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T10:55:28.181Z",
               "EditorCaption": ""
             }
           ]

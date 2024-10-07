@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using UnityEngine.UI;
+
 public class ForwardMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // ปรับความเร็วให้เหมาะสม
@@ -20,8 +21,6 @@ public class ForwardMovement : MonoBehaviour
     public Text touchInfoText;
     void Start()
     {
-        
-        
         writer = new StreamWriter("data.log", true); // สร้าง StreamWriter และเปิดไฟล์ในโหมด append
     }
 
@@ -37,7 +36,6 @@ public class ForwardMovement : MonoBehaviour
         formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
         if (Input.touchCount > 0)
         {
-            
             Touch touch = Input.GetTouch(0);
             LogTouchData(touch);
             Debug.Log("GetTouch 0, FingerID=" + touch.fingerId + ",position=" + touch.position);
@@ -49,14 +47,25 @@ public class ForwardMovement : MonoBehaviour
                     break;
 
                 case TouchPhase.Moved:
-                    touchEndPosition = touch.position;
+                    //touchEndPosition = touch.position;
                     break;
 
                 case TouchPhase.Ended:
+                    touchEndPosition = touch.position;
+                    Debug.Log("Ended Position:" + touchEndPosition);
                     Vector2 swipeDirection = touchEndPosition - touchStartPosition;
+
+                    // คำนวณระยะทางการลากนิ้ว (swipeDistance)
+                    float swipeDistance = swipeDirection.magnitude;
+
+                    // คำนวณระยะทางการเคลื่อนที่ของวัตถุ (moveDistance) โดยอิงจาก swipeDistance และขนาดหน้าจอ
+                    float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
+                    float moveDistance = (swipeDistance / screenDiagonal) * 10f; // ปรับ 10f ตามความเหมาะสม
+
+                    // ตรวจสอบทิศทางการปัด และเริ่ม Coroutine การเคลื่อนที่
                     if (swipeDirection.y < 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
                     {
-                        StartCoroutine(MoveForwardCoroutine());
+                        StartCoroutine(MoveForwardCoroutine(moveDistance));
                     }
                     break;
             }
@@ -80,45 +89,36 @@ public class ForwardMovement : MonoBehaviour
 
                     case TouchPhase.Ended:
                         Vector2 swipeDirection = touchEndPosition - touchStartPosition;
+
+                        // คำนวณระยะทางการลากนิ้ว (swipeDistance)
+                        float swipeDistance = swipeDirection.magnitude;
+
+                        // คำนวณระยะทางการเคลื่อนที่ของวัตถุ (moveDistance) โดยอิงจาก swipeDistance และขนาดหน้าจอ
+                        float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
+                        float moveDistance = (swipeDistance / screenDiagonal) * 10f; // ปรับ 10f ตามความเหมาะสม
+
+                        // ตรวจสอบทิศทางการปัด และเริ่ม Coroutine การเคลื่อนที่
                         if (swipeDirection.y < 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
                         {
-                            StartCoroutine(MoveForwardCoroutine());
+                            StartCoroutine(MoveForwardCoroutine(moveDistance));
                         }
                         break;
                 }
             }
         }
 
-        /* เอาไว้เช็ค
-        //Check Direct In Direct, Stylus
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.type == TouchType.Direct)
-            {
-                Debug.Log("Direct touch detected!");
-            }
-            else if (touch.type == TouchType.Indirect)
-            {
-                Debug.Log("Indirect touch detected!");
-            }
-            else if (touch.type == TouchType.Stylus)
-            {
-                Debug.Log("Stylus touch detected!");
-            }
-        }
-        */
+        // ... (ส่วนอื่นๆ ของโค้ด)
     }
 
-    IEnumerator MoveForwardCoroutine()
+    IEnumerator MoveForwardCoroutine(float moveDistance)
     {
         float elapsedTime = 0f;
         Vector3 startPosition = transform.position;
-        Vector3 targetPosition = transform.position + transform.forward * moveSpeed;
+        Vector3 targetPosition = transform.position + transform.forward * moveDistance;
 
         while (elapsedTime < moveDuration)
         {
+            Debug.Log("targetPosition: " + targetPosition);
             transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
             elapsedTime += Time.deltaTime;
             yield return null; // รอเฟรมถัดไป
@@ -136,7 +136,7 @@ public class ForwardMovement : MonoBehaviour
             "Position: {1}\n" +
             "Delta Position: {2}\n" +
             "Phase: {3}\n" +
-            "Tap Count: {4}\n"+
+            "Tap Count: {4}\n" +
             "Time: {5}\n",
             touch.fingerId, touch.position, touch.deltaPosition, touch.phase, touch.tapCount, formattedTime
         );
@@ -154,7 +154,7 @@ public class ForwardMovement : MonoBehaviour
             touchInfoText.text = logMessage;
         }
 
-        
+
     }
 
     void OnDestroy()
