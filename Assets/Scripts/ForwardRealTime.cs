@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Log
@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class ForwardRealTime : MonoBehaviour
 {
     public float moveSpeed = 5f; // ปรับความเร็วตามต้องการ
@@ -22,9 +23,10 @@ public class ForwardRealTime : MonoBehaviour
     private StreamWriter writer; // ตัวแปรสำหรับเขียนข้อมูลลงไฟล์
     private string formattedTime;
     DateTime now;
+
     void Start()
     {
-        
+
         player = GetComponent<Rigidbody>();
         // บันทึกตำแหน่งเริ่มต้นของผู้เล่น
         initialPlayerPosition = transform.position;
@@ -46,19 +48,24 @@ public class ForwardRealTime : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             LogTouchData(touch);
             Debug.Log("RealTime Touch 0, FingerID=" + touch.fingerId + ",position=" + touch.position);
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
                     touchStartPos = touch.position;
+                    initialTouchPosition = touch.position; // บันทึกตำแหน่งเริ่มต้นเมื่อเริ่มแตะ
                     break;
 
                 case TouchPhase.Moved:
                     Vector2 dragDirection = touch.position - touchStartPos;
                     dragDirection.Normalize();
 
-                    player.velocity = new Vector3(-dragDirection.x, 0f, -dragDirection.y) * moveSpeed;
-
-                    touchStartPos = touch.position; // อัปเดตตำแหน่งเริ่มต้นสำหรับเฟรมถัดไป
+                    // ตรวจสอบว่ามีการลากนิ้วหรือไม่
+                    if (Vector2.Distance(touch.position, initialTouchPosition) > 10f) // ปรับค่า 10f ตามระยะทางที่ต้องการ
+                    {
+                        player.velocity = new Vector3(-dragDirection.x, 0f, -dragDirection.y) * moveSpeed;
+                        touchStartPos = touch.position; // อัปเดตตำแหน่งเริ่มต้นสำหรับเฟรมถัดไป
+                    }
                     break;
 
                 case TouchPhase.Ended:
@@ -132,4 +139,3 @@ public class ForwardRealTime : MonoBehaviour
         }
     }
 }
-
