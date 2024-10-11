@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c88a1fb7a0094984d5cea2cab097b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 0.05
   touchInfoText: {fileID: 776044467}
 --- !u!1 &915291657
 GameObject:

@@ -6,7 +6,6 @@ using System;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 public class ForwardRealTime : MonoBehaviour
 {
     public float moveSpeed = 5f; // ปรับความเร็วตามต้องการ
@@ -24,6 +23,8 @@ public class ForwardRealTime : MonoBehaviour
     private string formattedTime;
     DateTime now;
 
+    private Vector2 touchStartPosition;
+    private Vector2 currentTouchPosition;
     void Start()
     {
 
@@ -47,30 +48,29 @@ public class ForwardRealTime : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
             LogTouchData(touch);
-            Debug.Log("RealTime Touch 0, FingerID=" + touch.fingerId + ",position=" + touch.position);
+            Debug.Log("GetTouch 0, FingerID=" + touch.fingerId + ",position=" + touch.position);
 
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    touchStartPos = touch.position;
-                    initialTouchPosition = touch.position; // บันทึกตำแหน่งเริ่มต้นเมื่อเริ่มแตะ
+                    touchStartPosition = touch.position;
                     break;
 
                 case TouchPhase.Moved:
-                    Vector2 dragDirection = touch.position - touchStartPos;
-                    dragDirection.Normalize();
+                    currentTouchPosition = touch.position;
+                    Vector2 swipeDirection = currentTouchPosition - touchStartPosition;
 
-                    // ตรวจสอบว่ามีการลากนิ้วหรือไม่
-                    if (Vector2.Distance(touch.position, initialTouchPosition) > 10f) // ปรับค่า 10f ตามระยะทางที่ต้องการ
+                    // ตรวจสอบว่าลากนิ้วลง
+                    if (swipeDirection.y < 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
                     {
-                        player.velocity = new Vector3(-dragDirection.x, 0f, -dragDirection.y) * moveSpeed;
-                        touchStartPos = touch.position; // อัปเดตตำแหน่งเริ่มต้นสำหรับเฟรมถัดไป
+                        // เคลื่อนที่ไปข้างหน้าแบบ Realtime ตามระยะทางที่ลากนิ้ว
+                        float moveAmount = -swipeDirection.y * moveSpeed * Time.deltaTime;
+                        transform.Translate(Vector3.forward * moveAmount);
                     }
                     break;
 
                 case TouchPhase.Ended:
-                    player.velocity = Vector3.zero; // หยุดการเคลื่อนที่
-                    Debug.Log("Ended Position:" + touch.position);
+                    // หยุดการเคลื่อนที่เมื่อปล่อยนิ้ว
                     break;
             }
         }
@@ -139,3 +139,4 @@ public class ForwardRealTime : MonoBehaviour
         }
     }
 }
+
