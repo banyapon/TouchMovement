@@ -67,12 +67,50 @@ public class ForwardRealTime : MonoBehaviour
                         float moveAmount = -swipeDirection.y * moveSpeed * Time.deltaTime;
                         transform.Translate(Vector3.forward * moveAmount);
                     }
+                    // ตรวจสอบว่าลากนิ้วขึ้น
+                    else if (swipeDirection.y > 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
+                    {
+                        // เคลื่อนที่ไปข้างหลังแบบ Realtime ตามระยะทางที่ลากนิ้ว
+                        float moveAmount = swipeDirection.y * moveSpeed * Time.deltaTime;
+                        transform.Translate(Vector3.back * moveAmount); // หรือ transform.Translate(-Vector3.forward * moveAmount);
+                    }
                     break;
 
                 case TouchPhase.Ended:
                     // หยุดการเคลื่อนที่เมื่อปล่อยนิ้ว
                     break;
             }
+        }
+
+        // --- Rotation-in-place (Touch Input) ---
+        if (Input.touchCount == 2)
+        {
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมปัจจุบัน
+            float currentAngle = Vector2.SignedAngle(touch0.position - touch1.position, Vector2.right);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมก่อนหน้า
+            float previousAngle = Vector2.SignedAngle(
+                (touch0.position - touch0.deltaPosition) - (touch1.position - touch1.deltaPosition),
+                Vector2.right
+            );
+
+            // หาผลต่างของมุมเพื่อใช้ในการหมุน
+            float rotateAmount = currentAngle - previousAngle;
+
+            // หมุนตัวละคร
+            transform.Rotate(0f, rotateAmount, 0f);
+
+            // จำกัดการหมุน 90 องศา โดยอ้างอิงจากตำแหน่งเริ่มต้นของ touch0
+            Vector3 currentRotation = transform.eulerAngles;
+            if (touch0.position.y > Screen.width / 2)
+            {
+                currentRotation.y = Mathf.Clamp(currentRotation.y, -180f, 0f);
+            }
+
+            transform.eulerAngles = currentRotation;
         }
     }
 

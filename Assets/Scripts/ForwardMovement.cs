@@ -11,6 +11,7 @@ public class ForwardMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // ปรับความเร็วให้เหมาะสม
     public float moveDuration = 0.5f; // ระยะเวลาในการเคลื่อนที่แต่ละครั้ง (ปรับได้ตามต้องการ)
+    public float rotationSpeed = 100f; // ความเร็วในการหมุน
 
     private Vector2 touchStartPosition;
     private Vector2 touchEndPosition;
@@ -20,12 +21,15 @@ public class ForwardMovement : MonoBehaviour
     DateTime now;
 
     public Text touchInfoText;
+
+    //Algorithm 3
+    private bool isRotating = false; //  ตัวแปรสำหรับตรวจสอบว่ากำลังหมุนอยู่หรือไม่
+
     void Start()
     {
         writer = new StreamWriter("data.log", true); // สร้าง StreamWriter และเปิดไฟล์ในโหมด append
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,6 +39,8 @@ public class ForwardMovement : MonoBehaviour
 
         now = DateTime.Now;
         formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
+
+        // ---  Touch 0 (สำหรับเดินหน้า/ถอยหลัง) ---
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -48,7 +54,7 @@ public class ForwardMovement : MonoBehaviour
                     break;
 
                 case TouchPhase.Moved:
-                    //touchEndPosition = touch.position;
+                    //  (ไม่มีการกระทำใน TouchPhase.Moved สำหรับ Touch 0)
                     break;
 
                 case TouchPhase.Ended:
@@ -66,49 +72,69 @@ public class ForwardMovement : MonoBehaviour
                     // ตรวจสอบทิศทางการปัด และเริ่ม Coroutine การเคลื่อนที่
                     if (swipeDirection.y < 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
                     {
-                        StartCoroutine(MoveForwardCoroutine(moveDistance));
+                        // ตวัดลง = เดินหน้า
+                        StartCoroutine(MoveCoroutine(moveDistance, 1)); // 1 คือ เดินหน้า
+                    }
+                    else if (swipeDirection.y > 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
+                    {
+                        // ตวัดขึ้น = เดินถอยหลัง
+                        StartCoroutine(MoveCoroutine(moveDistance, -1)); // -1 คือ เดินถอยหลัง
                     }
                     break;
             }
-
-            //Touch 1
-            if (Input.touchCount > 1)
-            {
-                Touch touch1 = Input.GetTouch(1);
-                LogTouchData(touch1);
-                Debug.Log("GetTouch 1, FingerID=" + touch1.fingerId + ",position=" + touch1.position);
-
-                switch (touch1.phase)
-                {
-                    case TouchPhase.Began:
-                        touchStartPosition = touch1.position;
-                        break;
-
-                    case TouchPhase.Moved:
-                        touchEndPosition = touch1.position;
-                        break;
-
-                    case TouchPhase.Ended:
-                        Vector2 swipeDirection = touchEndPosition - touchStartPosition;
-
-                        // คำนวณระยะทางการลากนิ้ว (swipeDistance)
-                        float swipeDistance = swipeDirection.magnitude;
-
-                        // คำนวณระยะทางการเคลื่อนที่ของวัตถุ (moveDistance) โดยอิงจาก swipeDistance และขนาดหน้าจอ
-                        float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
-                        float moveDistance = (swipeDistance / screenDiagonal) * 10f; // ปรับ 10f ตามความเหมาะสม
-
-                        // ตรวจสอบทิศทางการปัด และเริ่ม Coroutine การเคลื่อนที่
-                        if (swipeDirection.y < 0 && Mathf.Abs(swipeDirection.y) > Mathf.Abs(swipeDirection.x))
-                        {
-                            StartCoroutine(MoveForwardCoroutine(moveDistance));
-                        }
-                        break;
-                }
-            }
         }
 
-        // ... (ส่วนอื่นๆ ของโค้ด)
+
+        // ---  Touch 1 (สำหรับหมุน) ---
+        // --- Rotation-in-place (Touch Input) ---
+        if (Input.touchCount == 2)
+        {
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมปัจจุบัน
+            float currentAngle = Vector2.SignedAngle(touch0.position - touch1.position, Vector2.right);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมก่อนหน้า
+            float previousAngle = Vector2.SignedAngle(
+                (touch0.position - touch0.deltaPosition) - (touch1.position - touch1.deltaPosition),
+                Vector2.right
+            );
+
+            // หาผลต่างของมุมเพื่อใช้ในการหมุน
+            float rotateAmount = currentAngle - previousAngle;
+
+            // หมุนตัวละคร
+            transform.Rotate(0f, rotateAmount, 0f);
+
+            // จำกัดการหมุน 90 องศา โดยอ้างอิงจากตำแหน่งเริ่มต้นของ touch0
+            Vector3 currentRotation = transform.eulerAngles;
+            if (touch0.position.y > Screen.width / 2)
+            {
+                currentRotation.y = Mathf.Clamp(currentRotation.y, -180f, 0f);
+            }
+
+            transform.eulerAngles = currentRotation;
+        }
+
+    }
+
+    // Coroutine สำหรับการเคลื่อนที่ (เดินหน้า/ถอยหลัง)
+    IEnumerator MoveCoroutine(float moveDistance, int direction)
+    {
+        float elapsedTime = 0f;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = transform.position + transform.forward * moveDistance * direction;
+
+        while (elapsedTime < moveDuration)
+        {
+            Debug.Log("targetPosition: " + targetPosition);
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+            // รอเฟรมถัดไป
+        }
+        transform.position = targetPosition; // ตรวจสอบให้แน่ใจว่าถึงตำแหน่งเป้าหมาย
     }
 
     IEnumerator MoveForwardCoroutine(float moveDistance)
@@ -154,8 +180,6 @@ public class ForwardMovement : MonoBehaviour
         {
             touchInfoText.text = logMessage;
         }
-
-
     }
 
     void OnDestroy()
