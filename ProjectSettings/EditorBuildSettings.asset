@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealTime.unity
     guid: edad8ab6ebbc18e4d80fff4050bdede3
+  - enabled: 1
+    path: Assets/Scenes/DragnGo.unity
+    guid: d49500f9234ede44eb106175f50c8183
+  - enabled: 1
+    path: Assets/Scenes/NormapDragSpeed.unity
+    guid: 245195d6e9a02a946b93e92a1a018255
+  - enabled: 1
+    path: Assets/Scenes/SecondHypotheses.unity
+    guid: 0e74cdfc0be68184fabd12f937faf141
+  - enabled: 1
+    path: Assets/Scenes/RealtimeFinalTime.unity
+    guid: d1e02e10e6254b645ba2c60526a01fc7
   m_configObjects: {}

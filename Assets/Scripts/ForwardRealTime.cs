@@ -25,6 +25,11 @@ public class ForwardRealTime : MonoBehaviour
 
     private Vector2 touchStartPosition;
     private Vector2 currentTouchPosition;
+
+    //Improve Algorithm
+    private List<Vector2> touchPositions = new List<Vector2>(); // เก็บตำแหน่ง touch ในแต่ละเฟรม
+
+    private bool isRotating = false; // ตัวแปรสถานะสำหรับการหมุน
     void Start()
     {
 
@@ -44,7 +49,7 @@ public class ForwardRealTime : MonoBehaviour
         now = DateTime.Now;
         formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !isRotating)
         {
             Touch touch = Input.GetTouch(0);
             LogTouchData(touch);
@@ -85,6 +90,8 @@ public class ForwardRealTime : MonoBehaviour
         // --- Rotation-in-place (Touch Input) ---
         if (Input.touchCount == 2)
         {
+            isRotating = true; // ตั้งค่าเป็นกำลังหมุน
+
             Touch touch0 = Input.GetTouch(0);
             Touch touch1 = Input.GetTouch(1);
 
@@ -112,33 +119,49 @@ public class ForwardRealTime : MonoBehaviour
 
             transform.eulerAngles = currentRotation;
         }
+        else
+        {
+            isRotating = false; // เมื่อไม่ได้หมุนแล้ว
+        }
     }
 
     //เก็บ LogTouch
     private void LogTouchData(Touch touch)
     {
-        formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
-        string logMessage = string.Format(
-            "Finger ID: {0}\n" +
-            "Position: {1}\n" +
-            "Delta Position: {2}\n" +
-            "Phase: {3}\n" +
-            "Tap Count: {4}\n" +
-            "Time: {5}\n",
-            touch.fingerId, touch.position, touch.deltaPosition, touch.phase, touch.tapCount, formattedTime
-        );
+        touchPositions.Add(touch.position);
 
-        Debug.Log(logMessage); // ยังคงแสดงผลใน Console
+        string logMessage = string.Format(
+            "{0},{1},{2},{3},{4},{5},{6}",
+            "dogpaddle-new-realtime", // Fixed type
+            touch.fingerId,
+            touch.position,
+            touch.deltaPosition,
+            touch.phase,
+            touch.tapCount,
+            formattedTime
+        );
 
         if (writer != null)
         {
-            writer.WriteLine(logMessage); // เขียนข้อมูลลงไฟล์
-            writer.Flush(); // บังคับเขียนข้อมูลลงไฟล์ทันที
+            if (touch.phase == TouchPhase.Began) // Add header only on first touch
+            {
+                //writer.WriteLine("type,fingerId,touchPosition,deltaPosition,touchPhase,tapCount,time");
+            }
+
+            writer.WriteLine(logMessage);
+            writer.Flush(); // Ensure immediate write to file
         }
 
         if (touchInfoText != null)
         {
             touchInfoText.text = logMessage;
+        }
+
+        Debug.Log(logMessage);
+
+        if (touch.phase == TouchPhase.Ended)
+        {
+            touchPositions.Clear();
         }
     }
 

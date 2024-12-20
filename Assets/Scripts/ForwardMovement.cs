@@ -22,8 +22,9 @@ public class ForwardMovement : MonoBehaviour
 
     public Text touchInfoText;
 
-    //Algorithm 3
-    private bool isRotating = false; //  ตัวแปรสำหรับตรวจสอบว่ากำลังหมุนอยู่หรือไม่
+    //Improve Algorithm
+    private List<Vector2> touchPositions = new List<Vector2>(); // เก็บตำแหน่ง touch ในแต่ละเฟรม
+    private Vector2 initialTouchPosition; // ตำแหน่ง touch เริ่มต้น
 
     void Start()
     {
@@ -39,6 +40,8 @@ public class ForwardMovement : MonoBehaviour
 
         now = DateTime.Now;
         formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
+
+
 
         // ---  Touch 0 (สำหรับเดินหน้า/ถอยหลัง) ---
         if (Input.touchCount > 0)
@@ -157,28 +160,40 @@ public class ForwardMovement : MonoBehaviour
     //เก็บ LogTouch
     private void LogTouchData(Touch touch)
     {
-        formattedTime = now.ToString("dd/MM/yyyy HH:mm:ss:fff");
-        string logMessage = string.Format(
-            "Finger ID: {0}\n" +
-            "Position: {1}\n" +
-            "Delta Position: {2}\n" +
-            "Phase: {3}\n" +
-            "Tap Count: {4}\n" +
-            "Time: {5}\n",
-            touch.fingerId, touch.position, touch.deltaPosition, touch.phase, touch.tapCount, formattedTime
-        );
+        touchPositions.Add(touch.position);
 
-        Debug.Log(logMessage); // ยังคงแสดงผลใน Console
+        string logMessage = string.Format(
+            "{0},{1},{2},{3},{4},{5},{6}",
+            "dogpaddle-old-no-innertia", // Fixed type
+            touch.fingerId,
+            touch.position,
+            touch.deltaPosition,
+            touch.phase,
+            touch.tapCount,
+            formattedTime
+        );
 
         if (writer != null)
         {
-            writer.WriteLine(logMessage); // เขียนข้อมูลลงไฟล์
-            writer.Flush(); // บังคับเขียนข้อมูลลงไฟล์ทันที
+            if (touch.phase == TouchPhase.Began) // Add header only on first touch
+            {
+                //writer.WriteLine("type,fingerId,touchPosition,deltaPosition,touchPhase,tapCount,time");
+            }
+
+            writer.WriteLine(logMessage);
+            writer.Flush(); // Ensure immediate write to file
         }
 
         if (touchInfoText != null)
         {
             touchInfoText.text = logMessage;
+        }
+
+        Debug.Log(logMessage);
+
+        if (touch.phase == TouchPhase.Ended)
+        {
+            touchPositions.Clear();
         }
     }
 

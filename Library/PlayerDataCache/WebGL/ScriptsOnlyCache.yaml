@@ -2,22 +2,16 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CameraClass
+    - CameraSwitcher
+    - DragNGo
+    - FinalTimeRealtimeDeceleration
+    - FirstHypotheses
     - ForwardMovement
-    Unity.Recorder.Editor.dll:
-    - UnityEditor.Recorder.MovieRecorderEditor
-    - UnityEditor.Recorder.MovieRecorderSettings
-    - UnityEditor.Recorder.RecorderControllerSettings
-    - UnityEditor.Recorder.RecorderPreferencesSettings
-    - UnityEditor.Recorder.RecorderSettingsPrefsEditor
+    - ForwardRealTime
+    - LoadSceneManager
+    - SecondHypotheses
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    Unity.Timeline.Editor.dll:
-    - TimelinePreferences
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -25,6 +19,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
@@ -35,9 +30,12 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
   serializedClasses:
     UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
     UnityEngine.UI:
     - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
@@ -45,8 +43,451 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.ScrollRect/ScrollRectEvent
     - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LoadSceneManager
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: ForwardMovement
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: ForwardRealTime
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: DragNGo
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: FirstHypotheses
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: SecondHypotheses
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: CameraSwitcher
+    methodName: SwitchCamera
+  - assembly: Assembly-CSharp
+    fullTypeName: FinalTimeRealtimeDeceleration
+    methodName: LoadScene
   sceneClasses:
+    Assets/Scenes/DragnGo.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 16944}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 18362}
+    - Class: 114
+      Script: {instanceID: 18970}
+    - Class: 114
+      Script: {instanceID: 20008}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    Assets/Scenes/Main.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 22518}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/NormapDragSpeed.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 18362}
+    - Class: 114
+      Script: {instanceID: 18560}
+    - Class: 114
+      Script: {instanceID: 18970}
+    - Class: 114
+      Script: {instanceID: 20008}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    Assets/Scenes/RealTime.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 18362}
+    - Class: 114
+      Script: {instanceID: 18970}
+    - Class: 114
+      Script: {instanceID: 20008}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20754}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    Assets/Scenes/RealtimeFinalTime.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 18362}
+    - Class: 114
+      Script: {instanceID: 18970}
+    - Class: 114
+      Script: {instanceID: 20008}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
+    - Class: 114
+      Script: {instanceID: 22876}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
     Assets/Scenes/SampleScene.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -79,29 +520,33 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16602}
+      Script: {instanceID: 16640}
     - Class: 114
-      Script: {instanceID: 17588}
+      Script: {instanceID: 17626}
     - Class: 114
-      Script: {instanceID: 17786}
+      Script: {instanceID: 17684}
     - Class: 114
-      Script: {instanceID: 18232}
+      Script: {instanceID: 17890}
     - Class: 114
-      Script: {instanceID: 18814}
+      Script: {instanceID: 18188}
     - Class: 114
-      Script: {instanceID: 20214}
+      Script: {instanceID: 18362}
     - Class: 114
-      Script: {instanceID: 20508}
+      Script: {instanceID: 18970}
     - Class: 114
-      Script: {instanceID: 20964}
+      Script: {instanceID: 20008}
     - Class: 114
-      Script: {instanceID: 20972}
+      Script: {instanceID: 20462}
     - Class: 114
-      Script: {instanceID: 21986}
+      Script: {instanceID: 20778}
     - Class: 114
-      Script: {instanceID: 24004}
+      Script: {instanceID: 21166}
     - Class: 114
-      Script: {instanceID: 24394}
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -112,6 +557,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
     - Class: 222
@@ -119,6 +566,93 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    Assets/Scenes/SecondHypotheses.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16640}
+    - Class: 114
+      Script: {instanceID: 16754}
+    - Class: 114
+      Script: {instanceID: 17684}
+    - Class: 114
+      Script: {instanceID: 17890}
+    - Class: 114
+      Script: {instanceID: 18188}
+    - Class: 114
+      Script: {instanceID: 18362}
+    - Class: 114
+      Script: {instanceID: 18970}
+    - Class: 114
+      Script: {instanceID: 20008}
+    - Class: 114
+      Script: {instanceID: 20462}
+    - Class: 114
+      Script: {instanceID: 20778}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21278}
+    - Class: 114
+      Script: {instanceID: 21286}
+    - Class: 114
+      Script: {instanceID: 22374}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -147,6 +681,12 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
+      Hash: 3373af3efd824101240a62cb36d41c69
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SecondHypotheses
+  - hash:
+      serializedVersion: 2
       Hash: 94f8303fca6ba25383fc62595e324b7b
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -157,6 +697,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 8af13dfc371c9fb1cc40e3c4a961f137
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameController
   - hash:
       serializedVersion: 2
       Hash: ea1569413d805748b7cef2dcb4622c85
@@ -175,6 +721,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: f8d30d83a58532a941f5f0a879c0236c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DragNGo
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -223,6 +775,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnBecameVisibleMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 2004cb96fef69e343396cf7aeacd686c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ForwardMovement
   - hash:
       serializedVersion: 2
       Hash: bcdedb1b3a567eb05111be4716618ce1
@@ -315,6 +873,12 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
+      Hash: 73865701e4e90e2e1bc9449916b375c5
+    assemblyName: Unity.Recorder
+    namespaceName: UnityEngine.Recorder
+    className: RecorderBindings
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -397,6 +961,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.EventSystems
     className: BaseInput
+  - hash:
+      serializedVersion: 2
+      Hash: d16348e1d1d1f42d7abb87bf73f75350
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FirstHypotheses
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -579,6 +1149,12 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: b6bc82ef8994627887cee068e9cbe3cd
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraClass
+  - hash:
+      serializedVersion: 2
       Hash: 6237f92becd6162fa105361ab9ce2a00
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
@@ -669,6 +1245,12 @@ ScriptsOnlyBuild:
     className: StateGraphAsset
   - hash:
       serializedVersion: 2
+      Hash: 18e9a502e5acc2669bdd61b6734080c3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ForwardRealTime
+  - hash:
+      serializedVersion: 2
       Hash: 6a356b04c25c0bb008c1b24bf8b0f996
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -697,6 +1279,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseUpAsButtonMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 64b9112a4ae2365e2c85de6b5226d5de
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraSwitcher
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -874,6 +1462,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LoadSceneManager
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnParticleCollisionMessageListener
@@ -907,6 +1501,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: b8aff7920f6c9e397ad7b0a1c8948db4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FinalTimeRealtimeDeceleration
   - hash:
       serializedVersion: 2
       Hash: afe1800287c9574079eab3fea2622416
@@ -943,25 +1543,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 36cdbc7cd0bf3efd41bcf1bb418bd16b
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: ForwardMovement
-  - hash:
-      serializedVersion: 2
-      Hash: b6bc82ef8994627887cee068e9cbe3cd
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CameraClass
-  - hash:
-      serializedVersion: 2
-      Hash: 73865701e4e90e2e1bc9449916b375c5
-    assemblyName: Unity.Recorder
-    namespaceName: UnityEngine.Recorder
-    className: RecorderBindings
   platform: 20
   scenePathNames:
+  - Assets/Scenes/Main.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/HP/Documents/build
+  - Assets/Scenes/RealTime.unity
+  - Assets/Scenes/DragnGo.unity
+  - Assets/Scenes/NormapDragSpeed.unity
+  - Assets/Scenes/SecondHypotheses.unity
+  - Assets/Scenes/RealtimeFinalTime.unity
+  playerPath: C:/Users/HP/Documents/GitHub/banyapon.github.io/research

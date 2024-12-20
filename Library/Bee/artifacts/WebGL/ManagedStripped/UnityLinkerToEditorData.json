@@ -36,7 +36,13 @@
           {
             "name": "AudioBehaviour",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -50,7 +56,13 @@
           {
             "name": "AudioListener",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -87,7 +99,13 @@
           {
             "name": "Camera",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -107,7 +125,13 @@
           {
             "name": "Cubemap",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -127,7 +151,13 @@
           {
             "name": "EditorExtension",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 1,
             "icon": null
@@ -141,7 +171,13 @@
           {
             "name": "GameObject",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -167,7 +203,13 @@
           {
             "name": "LevelGameManager",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 1,
             "icon": null
@@ -175,27 +217,52 @@
           {
             "name": "Light",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
           },
           {
             "name": "LightProbes",
-            "scenes": [],
+            "scenes": [
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
           {
             "name": "LightingSettings",
-            "scenes": [],
+            "scenes": [
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
           {
             "name": "LightmapSettings",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -209,7 +276,13 @@
           {
             "name": "Material",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -217,7 +290,12 @@
           {
             "name": "Mesh",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -225,7 +303,12 @@
           {
             "name": "MeshFilter",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -233,7 +316,12 @@
           {
             "name": "MeshRenderer",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -241,7 +329,13 @@
           {
             "name": "MonoBehaviour",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -255,7 +349,13 @@
           {
             "name": "MonoScript",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 1,
             "icon": null
@@ -263,7 +363,13 @@
           {
             "name": "NamedObject",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 1,
             "icon": null
@@ -295,7 +401,13 @@
           {
             "name": "RectTransform",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -309,7 +421,13 @@
           {
             "name": "RenderSettings",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -341,7 +459,13 @@
           {
             "name": "Shader",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -361,7 +485,13 @@
           {
             "name": "Sprite",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -374,7 +504,14 @@
           },
           {
             "name": "SpriteRenderer",
-            "scenes": [],
+            "scenes": [
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
@@ -555,9 +692,24 @@
         "name": "Physics",
         "dependencies": [
           {
+            "name": "BoxCollider",
+            "scenes": [
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity"
+            ],
+            "dependencyType": 0,
+            "icon": null
+          },
+          {
             "name": "CapsuleCollider",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -571,7 +723,12 @@
           {
             "name": "MeshCollider",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -585,7 +742,12 @@
           {
             "name": "Rigidbody",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -732,7 +894,13 @@
           {
             "name": "Font",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -775,7 +943,13 @@
           {
             "name": "Canvas",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -789,7 +963,13 @@
           {
             "name": "CanvasRenderer",
             "scenes": [
-              "Assets/Scenes/SampleScene.unity"
+              "Assets/Scenes/DragnGo.unity",
+              "Assets/Scenes/Main.unity",
+              "Assets/Scenes/NormapDragSpeed.unity",
+              "Assets/Scenes/RealTime.unity",
+              "Assets/Scenes/RealtimeFinalTime.unity",
+              "Assets/Scenes/SampleScene.unity",
+              "Assets/Scenes/SecondHypotheses.unity"
             ],
             "dependencyType": 0,
             "icon": null

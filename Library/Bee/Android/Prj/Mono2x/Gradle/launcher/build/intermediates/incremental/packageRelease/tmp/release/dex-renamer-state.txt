@@ -1,0 +1,4 @@
+#Wed Oct 16 13:44:10 ICT 2024
+base.0=C\:\\Users\\HP\\Desktop\\TouchMovement\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

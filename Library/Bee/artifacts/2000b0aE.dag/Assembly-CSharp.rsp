@@ -310,6 +310,7 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.1f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.WebGLModule.dll"
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@1.2.3/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
@@ -339,7 +340,15 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/CameraClass.cs"
+"Assets/Scripts/CameraSwitcher.cs"
+"Assets/Scripts/DragnGo.cs"
+"Assets/Scripts/FinalTimeRealtimeDeceleration.cs"
+"Assets/Scripts/FirstHypotheses.cs"
 "Assets/Scripts/ForwardMovement.cs"
+"Assets/Scripts/ForwardRealTime.cs"
+"Assets/Scripts/GameController.cs"
+"Assets/Scripts/LoadSceneManager.cs"
+"Assets/Scripts/SecondHypothese.cs"
 -langversion:9.0
 
 /deterministic
