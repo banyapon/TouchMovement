@@ -348,6 +348,7 @@
 "Assets/Scripts/ForwardRealTime.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/LoadSceneManager.cs"
+"Assets/Scripts/NewDragnGo.cs"
 "Assets/Scripts/SecondHypothese.cs"
 -langversion:9.0
 

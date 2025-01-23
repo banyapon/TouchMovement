@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\ForwardRealTime.cs" />
     <Compile Include="Assets\Scripts\LoadSceneManager.cs" />
     <Compile Include="Assets\Scripts\FinalTimeRealtimeDeceleration.cs" />
+    <Compile Include="Assets\Scripts\NewDragnGo.cs" />
     <Compile Include="Assets\Scripts\CameraSwitcher.cs" />
   </ItemGroup>
   <ItemGroup>

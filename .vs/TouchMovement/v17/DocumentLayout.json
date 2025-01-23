@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\TouchMovement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|c:\\users\\hp\\desktop\\touchmovement\\assets\\scripts\\finaltimerealtimedeceleration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\finaltimerealtimedeceleration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|c:\\users\\hp\\desktop\\touchmovement\\assets\\scripts\\newdragngo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\newdragngo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|C:\\Users\\HP\\Desktop\\TouchMovement\\assets\\scripts\\dragngo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|c:\\users\\hp\\desktop\\touchmovement\\assets\\scripts\\dragngo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dragngo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|C:\\Users\\HP\\Desktop\\TouchMovement\\assets\\scripts\\finaltimerealtimedeceleration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\finaltimerealtimedeceleration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D7711C5-B2F1-5A3C-A87A-C174CE627D3A}|Assembly-CSharp.csproj|C:\\Users\\HP\\Desktop\\TouchMovement\\assets\\scripts\\forwardrealtime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,6 +43,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NewDragnGo.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\NewDragnGo.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\NewDragnGo.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\NewDragnGo.cs",
+              "RelativeToolTip": "Assets\\Scripts\\NewDragnGo.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAkwHoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T08:52:16.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "FinalTimeRealtimeDeceleration.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\FinalTimeRealtimeDeceleration.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FinalTimeRealtimeDeceleration.cs",
@@ -57,14 +74,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\DragnGo.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\DragnGo.cs",
               "RelativeToolTip": "Assets\\Scripts\\DragnGo.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAowFYAAAASAAAA",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAowEAAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-20T03:59:42.548Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ForwardRealTime.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\ForwardRealTime.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ForwardRealTime.cs",
@@ -72,12 +89,11 @@
               "RelativeToolTip": "Assets\\Scripts\\ForwardRealTime.cs",
               "ViewState": "AQIAAHkAAAAAAAAAAAAkwJMAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:49:27.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T08:49:27.925Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "SecondHypothese.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\SecondHypothese.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SecondHypothese.cs",
@@ -85,12 +101,11 @@
               "RelativeToolTip": "Assets\\Scripts\\SecondHypothese.cs",
               "ViewState": "AQIAAIYAAAAAAAAAAAAkwJoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:18:49.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T08:18:49.313Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FirstHypotheses.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\FirstHypotheses.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FirstHypotheses.cs",
@@ -98,12 +113,11 @@
               "RelativeToolTip": "Assets\\Scripts\\FirstHypotheses.cs",
               "ViewState": "AQIAAJ8AAAAAAAAAAAAowKsAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:03:56.688Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T08:03:56.688Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ForwardMovement.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\TouchMovement\\Assets\\Scripts\\ForwardMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ForwardMovement.cs",
@@ -111,8 +125,7 @@
               "RelativeToolTip": "Assets\\Scripts\\ForwardMovement.cs",
               "ViewState": "AQIAAKEAAAAAAAAAAAAowLMAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T04:35:29.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T04:35:29.575Z"
             }
           ]
         }
