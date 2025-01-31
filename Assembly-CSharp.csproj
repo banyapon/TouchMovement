@@ -60,11 +60,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\CameraClass.cs" />
+    <Compile Include="Assets\Scripts\DogPaddleResearchRT.cs" />
     <Compile Include="Assets\Scripts\SecondHypothese.cs" />
     <Compile Include="Assets\Scripts\FirstHypotheses.cs" />
     <Compile Include="Assets\Scripts\ForwardMovement.cs" />
     <Compile Include="Assets\Scripts\DragnGo.cs" />
     <Compile Include="Assets\Scripts\ForwardRealTime.cs" />
+    <Compile Include="Assets\Scripts\DogPaddleResearch.cs" />
     <Compile Include="Assets\Scripts\LoadSceneManager.cs" />
     <Compile Include="Assets\Scripts\FinalTimeRealtimeDeceleration.cs" />
     <Compile Include="Assets\Scripts\NewDragnGo.cs" />

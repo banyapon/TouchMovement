@@ -45,10 +45,10 @@ MonoBehaviour:
       m_Leaf: Recordings
       m_ForceAssetFolder: 0
       m_AbsolutePath: 
-    m_FileName: Touch_<Recorder>_<Take>
+    m_FileName: <Recorder>_<Take>
   m_Version: 1
   encoderSettings:
-    rid: 4746190993424908288
+    rid: 8233285433983762434
   captureAlpha: 0
   captureAudio: 1
   m_ImageInputSelector:
@@ -57,7 +57,7 @@ MonoBehaviour:
       m_OutputResolution:
         m_CustomWidth: 1024
         m_CustomHeight: 1024
-        imageHeight: 1080
+        imageHeight: 0
         maxSupportedHeight: 2160
         m_AspectRatio:
           m_CustomAspectX: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_AudioInputSettings:
     preserveAudio: 1
   _accumulationSettings:
-    rid: 4746190993424908289
+    rid: 8233285433983762435
   outputFormat: 0
   encodingQuality: 2
   containerFormatSelected: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4746190993424908288
+    - rid: 8233285433983762434
       type: {class: CoreEncoderSettings, ns: UnityEditor.Recorder.Encoder, asm: Unity.Recorder.Editor}
       data:
         targetBitRate: 8
@@ -131,9 +131,9 @@ MonoBehaviour:
         numConsecutiveBFrames: 2
         encodingProfile: 2
         keyframeDistance: 25
-        codec: 0
+        codec: 1
         encodingQuality: 2
-    - rid: 4746190993424908289
+    - rid: 8233285433983762435
       type: {class: AccumulationSettings, ns: , asm: Unity.Recorder.Editor}
       data:
         captureAccumulation: 0
