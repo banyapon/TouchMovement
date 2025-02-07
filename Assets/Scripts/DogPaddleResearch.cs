@@ -16,10 +16,9 @@ public class DogPaddleResearch : MonoBehaviour
     private float touchStartTime;
     private float touchEndTime;
 
-    private string logFilePath = "data.csv";
+    private string logFilePath;
     private Vector3 startPosition;
     private Vector3 stopPosition;
-
 
     private StreamWriter writer;
     private string formattedTime;
@@ -27,17 +26,19 @@ public class DogPaddleResearch : MonoBehaviour
 
     public Text touchInfoText;
 
+    private bool isRotating = false; // ตัวแปรสถานะสำหรับการหมุน
+
     void Start()
     {
-        writer = new StreamWriter("data.log", true);
+        logFilePath = Path.Combine(Application.dataPath, "data.csv");
+
         if (!File.Exists(logFilePath))
         {
-            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            using (StreamWriter fileWriter = new StreamWriter(logFilePath, true))
             {
-                writer.WriteLine("Timestamp,EventType,Pos_X,Pos_Y,Pos_Z,Distance,Duration,Speed");
+                fileWriter.WriteLine("Timestamp,EventType,TouchPos,AvatarPos");
             }
         }
-
     }
 
     void Update()
@@ -61,49 +62,84 @@ public class DogPaddleResearch : MonoBehaviour
                     touchStartPosition = touch.position;
                     touchStartTime = Time.time;
                     startPosition = transform.position;
-                    LogDataCSV("start", startPosition, 0, 0, 0);
+                    LogDataCSV("Began", touchStartPosition, startPosition);
                     break;
 
                 case TouchPhase.Ended:
                     touchEndPosition = touch.position;
                     touchEndTime = Time.time;
                     stopPosition = transform.position;
-
-                    float swipeDistance = (touchEndPosition - touchStartPosition).magnitude;
-                    float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
-                    float moveDistance = (swipeDistance / screenDiagonal) * 10f;
-
-                    float duration = touchEndTime - touchStartTime;
-                    float distanceTraveled = Vector3.Distance(startPosition, stopPosition);
-                    float speed = distanceTraveled / duration;
-
-                    LogData("stop", stopPosition);
-                    LogData("distance", distanceTraveled);
-                    LogData("duration", duration);
-                    LogData("speed", speed);
-                    float speedCSV = (duration > 0) ? distanceTraveled / duration : 0;
-
-                    LogDataCSV("stop", stopPosition, distanceTraveled, duration, speedCSV);
-
-
-                    if (touchEndPosition.y < touchStartPosition.y)
-                    {
-                        StartCoroutine(MoveCoroutine(moveDistance, 1));
-                    }
-                    else if (touchEndPosition.y > touchStartPosition.y)
-                    {
-                        StartCoroutine(MoveCoroutine(moveDistance, -1));
-                    }
+                    ComputeAvatarMovement();
+                    LogDataCSV("Ended", touchEndPosition, stopPosition);
                     break;
             }
         }
+
+        // --- Rotation-in-place (Touch Input) ทำมาเพื่อจำลอง Gaze Direction ให้แตะสองนิ้วแทนการมองหมุนคอ---
+        if (Input.touchCount == 2)
+        {
+            isRotating = true; // ตั้งค่าเป็นกำลังหมุน
+
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมปัจจุบัน
+            float currentAngle = Vector2.SignedAngle(touch0.position - touch1.position, Vector2.right);
+
+            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมก่อนหน้า
+            float previousAngle = Vector2.SignedAngle(
+                (touch0.position - touch0.deltaPosition) - (touch1.position - touch1.deltaPosition),
+                Vector2.right
+            );
+
+            // หาผลต่างของมุมเพื่อใช้ในการหมุน
+            float rotateAmount = currentAngle - previousAngle;
+
+            // หมุนตัวละคร
+            transform.Rotate(0f, rotateAmount, 0f);
+
+            // จำกัดการหมุน 90 องศา โดยอ้างอิงจากตำแหน่งเริ่มต้นของ touch0
+            Vector3 currentRotation = transform.eulerAngles;
+            if (touch0.position.y > Screen.width / 2)
+            {
+                currentRotation.y = Mathf.Clamp(currentRotation.y, -180f, 0f);
+            }
+
+            transform.eulerAngles = currentRotation;
+        }
+        else
+        {
+            isRotating = false; // เมื่อไม่ได้หมุนแล้ว
+        }
     }
 
-    IEnumerator MoveCoroutine(float moveDistance, int direction)
+    void ComputeAvatarMovement()
+    {
+        // 1. คำนวณระยะทางที่นิ้วลากไปบนจอ Touch
+        float swipeDistance = Vector2.Distance(touchStartPosition, touchEndPosition);
+        float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
+        float moveDistance = (swipeDistance / screenDiagonal) * 10f; // สเกลระยะทางเคลื่อนที่
+
+        // 2. คำนวณทิศทางของการลากนิ้ว (drag-direction)
+        int dragDirection = (touchEndPosition.y < touchStartPosition.y) ? 1 : -1;
+
+        // 3. คำนวณทิศทางการเคลื่อนที่ของ avatar
+        Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+
+        // 4. คำนวณตำแหน่งปลายทางของ avatar
+        Vector3 targetPosition = transform.position + movementDirection * moveDistance * dragDirection;
+
+        // 5. บันทึกค่าตำแหน่งใหม่ลง log
+        Debug.Log($"Moving from {transform.position} to {targetPosition}");
+
+        // 6. ทำให้ avatar เคลื่อนที่ไปยังตำแหน่งใหม่
+        StartCoroutine(MoveCoroutine(targetPosition));
+    }
+
+    IEnumerator MoveCoroutine(Vector3 targetPosition)
     {
         float elapsedTime = 0f;
         Vector3 startPosition = transform.position;
-        Vector3 targetPosition = transform.position + transform.forward * moveDistance * direction;
 
         while (elapsedTime < moveDuration)
         {
@@ -111,26 +147,22 @@ public class DogPaddleResearch : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
         transform.position = targetPosition;
+
+        // บันทึกค่าตำแหน่งสุดท้ายลง log
+        LogDataCSV("Moved", touchEndPosition, targetPosition);
     }
+
+
 
     private void LogTouchData(Touch touch)
     {
-        string logMessage = string.Format(
-            "{0},{1},{2},{3},{4},{5},{6}",
-            "dogpaddle-updated",
-            touch.fingerId,
-            touch.position,
-            touch.deltaPosition,
-            touch.phase,
-            touch.tapCount,
-            formattedTime
-        );
+        string logMessage = $"{formattedTime},{touch.phase},{touch.position.x},{touch.position.y},{transform.position.x:F2},{transform.position.y:F2},{transform.position.z:F2}";
 
-        if (writer != null)
+        using (StreamWriter fileWriter = new StreamWriter(logFilePath, true))
         {
-            writer.WriteLine(logMessage);
-            writer.Flush();
+            fileWriter.WriteLine(logMessage);
         }
 
         if (touchInfoText != null)
@@ -141,36 +173,16 @@ public class DogPaddleResearch : MonoBehaviour
         Debug.Log(logMessage);
     }
 
-    private void LogDataCSV(string eventType, Vector3 position, float distance, float duration, float speed)
+    private void LogDataCSV(string eventType, Vector2 touchPos, Vector3 avatarPos)
     {
-        string formattedTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss:fff");
+        string logEntry = $"{formattedTime},{eventType},{touchPos.x:F2},{touchPos.y:F2},{avatarPos.x:F2},{avatarPos.y:F2},{avatarPos.z:F2}";
 
-        using (StreamWriter writer = new StreamWriter(logFilePath, true))
+        using (StreamWriter fileWriter = new StreamWriter(logFilePath, true))
         {
-            writer.WriteLine($"{formattedTime},{eventType},{position.x:F2},{position.y:F2},{position.z:F2},{distance:F2},{duration:F2},{speed:F2}");
+            fileWriter.WriteLine(logEntry);
         }
 
-        Debug.Log($"Logged: {formattedTime},{eventType},{position},{distance},{duration},{speed}");
-    }
-
-
-    private void LogData(string type, object value)
-    {
-        string logMessage = string.Format("{0},{1},{2}", formattedTime, type, value);
-        if (writer != null)
-        {
-            writer.WriteLine(logMessage);
-            writer.Flush();
-        }
-        Debug.Log(logMessage);
-    }
-
-    void OnDestroy()
-    {
-        if (writer != null)
-        {
-            writer.Close();
-        }
+        Debug.Log($"Logged: {logEntry}");
     }
 
     public void LoadScene(string sceneName)
