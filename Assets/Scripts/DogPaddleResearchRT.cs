@@ -14,12 +14,13 @@ public class DogPaddleResearchRT : MonoBehaviour
     private float touchStartTime;
     private float touchEndTime;
 
-    private string logFilePath = "data.csv";
-    private string logFilePathTXT = "data.log";
+    private string logFilePath;
+    private string logFilePathTXT;
     private Vector3 startPosition;
     private Vector3 stopPosition;
 
-    private StreamWriter writer;
+    private StreamWriter csvWriter;
+    //private StreamWriter txtWriter;
     private string formattedTime;
     DateTime now;
 
@@ -28,17 +29,24 @@ public class DogPaddleResearchRT : MonoBehaviour
 
     void Start()
     {
-        writer = new StreamWriter("data.log", true);
+        logFilePath = Path.Combine(Application.dataPath, "data_realtime.csv");
+
+        // ตรวจสอบและสร้างไฟล์หากไม่มี
         if (!File.Exists(logFilePath))
         {
-            File.WriteAllText(logFilePath, "Timestamp,EventType,Pos_X,Pos_Y,Pos_Z,Distance,Duration,Speed\n");
+            using (StreamWriter writer = new StreamWriter(logFilePath, false))
+            {
+                writer.WriteLine("Timestamp,EventType,Touch_X,Touch_Y,Pos_X,Pos_Y,Pos_Z");
+            }
         }
 
-        if (!File.Exists(logFilePathTXT))
+        // เปิดใช้งาน StreamWriter ด้วย FileMode.Append
+        csvWriter = new StreamWriter(new FileStream(logFilePath, FileMode.Append, FileAccess.Write, FileShare.Read))
         {
-            File.WriteAllText(logFilePathTXT, "Timestamp,EventType,Distance,Duration\n");
-        }
+            AutoFlush = true
+        };
     }
+
 
     void Update()
     {
@@ -54,6 +62,7 @@ public class DogPaddleResearchRT : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
             LogTouchData(touch);
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -61,14 +70,13 @@ public class DogPaddleResearchRT : MonoBehaviour
                     touchStartTime = Time.time;
                     startPosition = transform.position;
 
-                    LogDataCSV("start", startPosition, 0, 0, 0);
-                    LogDataTXT("start", 0, 0);
+                    LogDataCSV("Began", touchStartPosition, startPosition);
+                    //LogDataTXT("Began", 0, 0);
                     break;
 
                 case TouchPhase.Moved:
                     currentTouchPosition = touch.position;
                     Vector2 swipeDirection = currentTouchPosition - touchStartPosition;
-
                     float moveAmount = Mathf.Abs(swipeDirection.y) * moveSpeed * Time.deltaTime;
 
                     if (swipeDirection.y < 0)
@@ -80,7 +88,7 @@ public class DogPaddleResearchRT : MonoBehaviour
                         transform.Translate(Vector3.back * moveAmount);
                     }
 
-                    LogDataCSV("move", transform.position, swipeDirection.magnitude, Time.deltaTime, moveAmount / Time.deltaTime);
+                    LogDataCSV("Moved", currentTouchPosition, transform.position);
                     break;
 
                 case TouchPhase.Ended:
@@ -91,8 +99,8 @@ public class DogPaddleResearchRT : MonoBehaviour
                     float duration = touchEndTime - touchStartTime;
                     float speed = (duration > 0) ? distanceTraveled / duration : 0;
 
-                    LogDataCSV("stop", stopPosition, distanceTraveled, duration, speed);
-                    LogDataTXT("stop", distanceTraveled, duration);
+                    LogDataCSV("Ended", touch.position, stopPosition);
+                    //LogDataTXT("Ended", distanceTraveled, duration);
                     break;
             }
         }
@@ -125,24 +133,12 @@ public class DogPaddleResearchRT : MonoBehaviour
             isRotating = false;
         }
     }
+
     private void LogTouchData(Touch touch)
     {
-        string logMessage = string.Format(
-            "{0},{1},{2},{3},{4},{5},{6}",
-            "dogpaddle-updated",
-            touch.fingerId,
-            touch.position,
-            touch.deltaPosition,
-            touch.phase,
-            touch.tapCount,
-            formattedTime
-        );
+        string logMessage = $"{formattedTime},{touch.phase},{touch.position.x},{touch.position.y},{transform.position.x:F2},{transform.position.y:F2},{transform.position.z:F2}";
 
-        if (writer != null)
-        {
-            writer.WriteLine(logMessage);
-            writer.Flush();
-        }
+        csvWriter.WriteLine(logMessage);
 
         if (touchInfoText != null)
         {
@@ -152,30 +148,17 @@ public class DogPaddleResearchRT : MonoBehaviour
         Debug.Log(logMessage);
     }
 
-
-    private void LogDataCSV(string eventType, Vector3 position, float distance, float duration, float speed)
+    private void LogDataCSV(string eventType, Vector2 touchPos, Vector3 avatarPos)
     {
-        string formattedTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss:fff");
-
-
-        using (StreamWriter writer = new StreamWriter(logFilePath, true))
-        {
-            writer.WriteLine($"{formattedTime},{eventType},{position.x:F2},{position.y:F2},{position.z:F2},{distance:F2},{duration:F2},{speed:F2}");
-        }
-
-        Debug.Log($"Logged CSV: {formattedTime},{eventType},{position},{distance},{duration},{speed}");
+        string logEntry = $"{formattedTime},{eventType},{touchPos.x:F2},{touchPos.y:F2},{avatarPos.x:F2},{avatarPos.y:F2},{avatarPos.z:F2}";
+        csvWriter.WriteLine(logEntry);
+        Debug.Log($"Logged CSV: {logEntry}");
     }
 
-    private void LogDataTXT(string eventType, float distance, float duration)
+    private void OnApplicationQuit()
     {
-        string formattedTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss:fff");
-
-        using (StreamWriter writer = new StreamWriter(logFilePathTXT, true))
-        {
-            writer.WriteLine($"{formattedTime},{eventType},{distance:F2},{duration:F2}");
-        }
-
-        Debug.Log($"Logged TXT: {formattedTime},{eventType},{distance},{duration}");
+        csvWriter.Close();
+        //txtWriter.Close();
     }
 
     public void LoadScene(string sceneName)
