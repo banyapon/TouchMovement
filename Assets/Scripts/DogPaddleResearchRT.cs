@@ -9,26 +9,32 @@ using UnityEngine.SceneManagement;
 public class DogPaddleResearchRT : MonoBehaviour
 {
     public float moveSpeed = 0.05f;
+    public float inertiaAcc = 0.6f; // ค่าความเฉื่อย
     private Vector2 touchStartPosition;
     private Vector2 currentTouchPosition;
+    private Vector2 previousTouchPosition;
     private float touchStartTime;
     private float touchEndTime;
 
     private string logFilePath;
-    private string logFilePathTXT;
     private Vector3 startPosition;
     private Vector3 stopPosition;
+    private Vector3 prevAvatarPosition;
+    private Vector3 velocity;
+    private bool isMoving = false;
 
     private StreamWriter csvWriter;
-    //private StreamWriter txtWriter;
     private string formattedTime;
-    DateTime now;
+    private DateTime now;
 
     public Text touchInfoText;
     private bool isRotating = false;
 
     void Start()
     {
+        // ตั้งค่าการทำงานของ Frame Rate
+        Application.targetFrameRate = 60;
+
         logFilePath = Path.Combine(Application.dataPath, "data_realtime.csv");
 
         // ตรวจสอบและสร้างไฟล์หากไม่มี
@@ -45,8 +51,11 @@ public class DogPaddleResearchRT : MonoBehaviour
         {
             AutoFlush = true
         };
-    }
 
+        // ตั้งค่าตำแหน่งเริ่มต้น
+        prevAvatarPosition = transform.position;
+        velocity = Vector3.zero;
+    }
 
     void Update()
     {
@@ -67,27 +76,36 @@ public class DogPaddleResearchRT : MonoBehaviour
             {
                 case TouchPhase.Began:
                     touchStartPosition = touch.position;
+                    previousTouchPosition = touchStartPosition;
                     touchStartTime = Time.time;
                     startPosition = transform.position;
 
+                    // หยุด Inertia เมื่อมีการสัมผัสใหม่
+                    velocity = Vector3.zero;
+                    isMoving = true;
+
                     LogDataCSV("Began", touchStartPosition, startPosition);
-                    //LogDataTXT("Began", 0, 0);
                     break;
 
                 case TouchPhase.Moved:
                     currentTouchPosition = touch.position;
+                    Vector2 touchMoveDistance = currentTouchPosition - previousTouchPosition;
                     Vector2 swipeDirection = currentTouchPosition - touchStartPosition;
-                    float moveAmount = Mathf.Abs(swipeDirection.y) * moveSpeed * Time.deltaTime;
 
-                    if (swipeDirection.y < 0)
+                    float adjustedSpeed = moveSpeed * (60f / Mathf.Max(30f, 1f / Time.deltaTime)); // ปรับความเร็วให้คงที่
+                    float moveAmount = Mathf.Abs(touchMoveDistance.y) * adjustedSpeed;
+
+                    // อัปเดตตำแหน่งตามทิศทางที่ผู้ใช้ลากนิ้ว
+                    if (touchMoveDistance.y < 0)
                     {
                         transform.Translate(Vector3.forward * moveAmount);
                     }
-                    else if (swipeDirection.y > 0)
+                    else if (touchMoveDistance.y > 0)
                     {
                         transform.Translate(Vector3.back * moveAmount);
                     }
 
+                    previousTouchPosition = currentTouchPosition;
                     LogDataCSV("Moved", currentTouchPosition, transform.position);
                     break;
 
@@ -95,14 +113,24 @@ public class DogPaddleResearchRT : MonoBehaviour
                     touchEndTime = Time.time;
                     stopPosition = transform.position;
 
+                    float deltaTime = touchEndTime - touchStartTime;
                     float distanceTraveled = Vector3.Distance(startPosition, stopPosition);
-                    float duration = touchEndTime - touchStartTime;
-                    float speed = (duration > 0) ? distanceTraveled / duration : 0;
+                    float speed = (deltaTime > 0) ? distanceTraveled / deltaTime : 0;
+
+                    // คำนวณแรงเฉื่อย
+                    velocity = inertiaAcc * (stopPosition - prevAvatarPosition) / deltaTime;
+
+                    isMoving = true;
+                    prevAvatarPosition = stopPosition;
 
                     LogDataCSV("Ended", touch.position, stopPosition);
-                    //LogDataTXT("Ended", distanceTraveled, duration);
                     break;
             }
+        }
+
+        if (isMoving)
+        {
+            ApplyInertia();
         }
 
         if (Input.touchCount == 2)
@@ -134,6 +162,19 @@ public class DogPaddleResearchRT : MonoBehaviour
         }
     }
 
+    private void ApplyInertia()
+    {
+        if (velocity.magnitude > 0.01f)
+        {
+            transform.position += velocity * Time.deltaTime;
+            velocity *= 0.95f; // ลดความเร็วจากแรงเฉื่อย
+        }
+        else
+        {
+            isMoving = false; // หยุดเมื่อความเร็วต่ำมาก
+        }
+    }
+
     private void LogTouchData(Touch touch)
     {
         string logMessage = $"{formattedTime},{touch.phase},{touch.position.x},{touch.position.y},{transform.position.x:F2},{transform.position.y:F2},{transform.position.z:F2}";
@@ -158,7 +199,6 @@ public class DogPaddleResearchRT : MonoBehaviour
     private void OnApplicationQuit()
     {
         csvWriter.Close();
-        //txtWriter.Close();
     }
 
     public void LoadScene(string sceneName)

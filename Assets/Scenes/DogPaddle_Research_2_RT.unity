@@ -1187,7 +1187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d45cd3a72e5904ea15e784dd907910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.05
+  moveSpeed: 0.01
+  inertiaAcc: 0.6
   touchInfoText: {fileID: 776044467}
 --- !u!1 &915291657
 GameObject:

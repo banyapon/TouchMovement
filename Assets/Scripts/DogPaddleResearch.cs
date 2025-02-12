@@ -10,6 +10,7 @@ public class DogPaddleResearch : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float moveDuration = 0.5f;
+    public float inertiaAcc = 0.6f; // ค่าความเฉื่อย
 
     private Vector2 touchStartPosition;
     private Vector2 touchEndPosition;
@@ -19,11 +20,12 @@ public class DogPaddleResearch : MonoBehaviour
     private string logFilePath;
     private Vector3 startPosition;
     private Vector3 stopPosition;
+    private Vector3 prevAvatarPosition;
+    private Vector3 velocity;
+    private bool isMoving = false;
 
-    private StreamWriter writer;
     private string formattedTime;
     DateTime now;
-
     public Text touchInfoText;
 
     private bool isRotating = false; // ตัวแปรสถานะสำหรับการหมุน
@@ -39,6 +41,9 @@ public class DogPaddleResearch : MonoBehaviour
                 fileWriter.WriteLine("Timestamp,EventType,TouchPos,AvatarPos");
             }
         }
+
+        prevAvatarPosition = transform.position;
+        velocity = Vector3.zero;
     }
 
     void Update()
@@ -62,6 +67,11 @@ public class DogPaddleResearch : MonoBehaviour
                     touchStartPosition = touch.position;
                     touchStartTime = Time.time;
                     startPosition = transform.position;
+
+                    // หยุด Inertia เมื่อมีการสัมผัสใหม่
+                    velocity = Vector3.zero;
+                    isMoving = true;
+
                     LogDataCSV("Began", touchStartPosition, startPosition);
                     break;
 
@@ -69,70 +79,67 @@ public class DogPaddleResearch : MonoBehaviour
                     touchEndPosition = touch.position;
                     touchEndTime = Time.time;
                     stopPosition = transform.position;
+
+                    // คำนวณตำแหน่งใหม่ของ Avatar ตามแรงเฉื่อย
+                    float deltaTime = touchEndTime - touchStartTime;
+                    velocity = inertiaAcc * (stopPosition - prevAvatarPosition) / deltaTime;
+
+                    isMoving = true;
+                    prevAvatarPosition = stopPosition;
+
                     ComputeAvatarMovement();
                     LogDataCSV("Ended", touchEndPosition, stopPosition);
                     break;
             }
         }
 
-        // --- Rotation-in-place (Touch Input) ทำมาเพื่อจำลอง Gaze Direction ให้แตะสองนิ้วแทนการมองหมุนคอ---
+        if (isMoving)
+        {
+            ApplyInertia();
+        }
+
+        // --- Rotation-in-place (Touch Input) ---
         if (Input.touchCount == 2)
         {
-            isRotating = true; // ตั้งค่าเป็นกำลังหมุน
+            isRotating = true;
 
             Touch touch0 = Input.GetTouch(0);
             Touch touch1 = Input.GetTouch(1);
 
-            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมปัจจุบัน
             float currentAngle = Vector2.SignedAngle(touch0.position - touch1.position, Vector2.right);
-
-            // คำนวณมุมระหว่างนิ้วสองนิ้วในเฟรมก่อนหน้า
             float previousAngle = Vector2.SignedAngle(
                 (touch0.position - touch0.deltaPosition) - (touch1.position - touch1.deltaPosition),
                 Vector2.right
             );
 
-            // หาผลต่างของมุมเพื่อใช้ในการหมุน
             float rotateAmount = currentAngle - previousAngle;
-
-            // หมุนตัวละคร
             transform.Rotate(0f, rotateAmount, 0f);
 
-            // จำกัดการหมุน 90 องศา โดยอ้างอิงจากตำแหน่งเริ่มต้นของ touch0
             Vector3 currentRotation = transform.eulerAngles;
             if (touch0.position.y > Screen.width / 2)
             {
                 currentRotation.y = Mathf.Clamp(currentRotation.y, -180f, 0f);
             }
-
             transform.eulerAngles = currentRotation;
         }
         else
         {
-            isRotating = false; // เมื่อไม่ได้หมุนแล้ว
+            isRotating = false;
         }
     }
 
     void ComputeAvatarMovement()
     {
-        // 1. คำนวณระยะทางที่นิ้วลากไปบนจอ Touch
         float swipeDistance = Vector2.Distance(touchStartPosition, touchEndPosition);
         float screenDiagonal = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height);
-        float moveDistance = (swipeDistance / screenDiagonal) * 10f; // สเกลระยะทางเคลื่อนที่
+        float moveDistance = (swipeDistance / screenDiagonal) * 10f;
 
-        // 2. คำนวณทิศทางของการลากนิ้ว (drag-direction)
         int dragDirection = (touchEndPosition.y < touchStartPosition.y) ? 1 : -1;
 
-        // 3. คำนวณทิศทางการเคลื่อนที่ของ avatar
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-
-        // 4. คำนวณตำแหน่งปลายทางของ avatar
         Vector3 targetPosition = transform.position + movementDirection * moveDistance * dragDirection;
 
-        // 5. บันทึกค่าตำแหน่งใหม่ลง log
         Debug.Log($"Moving from {transform.position} to {targetPosition}");
-
-        // 6. ทำให้ avatar เคลื่อนที่ไปยังตำแหน่งใหม่
         StartCoroutine(MoveCoroutine(targetPosition));
     }
 
@@ -149,12 +156,21 @@ public class DogPaddleResearch : MonoBehaviour
         }
 
         transform.position = targetPosition;
-
-        // บันทึกค่าตำแหน่งสุดท้ายลง log
         LogDataCSV("Moved", touchEndPosition, targetPosition);
     }
 
-
+    private void ApplyInertia()
+    {
+        if (velocity.magnitude > 0.01f)
+        {
+            transform.position += velocity * Time.deltaTime;
+            velocity *= 0.95f;
+        }
+        else
+        {
+            isMoving = false;
+        }
+    }
 
     private void LogTouchData(Touch touch)
     {
